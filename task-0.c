@@ -11,10 +11,10 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int printed_chars = 0;
-
+	char c, *str;
+	
 	va_start(args, format);
-
-	while (format && *format)
+	for (; format && *format; format++)
 	{
 		if (*format != '%')
 		{
@@ -26,20 +26,18 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == 'c')
 			{
-				char c = va_arg(args, int);
+				c = va_arg(args, int);
 				putchar(c);
 				printed_chars++;
 			}
 			else if (*format == 's')
 			{
-				char *str = va_arg(args, char *);
+				*str = va_arg(args, char *);
 				if (str == NULL)
 					str = "(null)";
-				while (*str)
+				for (; *str; str++, printed_chars++)
 				{
 					putchar(*str);
-					printed_chars++;
-					str++;
 				}
 			}
 			else if (*format == '%')
@@ -48,10 +46,7 @@ int _printf(const char *format, ...)
 				printed_chars++;
 			}
 		}
-		format++;
 	}
-
 	va_end(args);
-
 	return (printed_chars);
 }
