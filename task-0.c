@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdarg.h>
 
 /**
  * _printf - printf function.
@@ -32,7 +33,7 @@ int _printf(const char *format, ...)
 			}
 			else if (*format == 's')
 			{
-				*str = va_arg(args, char *);
+				str = va_arg(args, char *);
 				if (str == NULL)
 					str = "(null)";
 				for (; *str; str++, printed_chars++)
