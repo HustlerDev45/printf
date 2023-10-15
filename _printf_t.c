@@ -5,7 +5,7 @@
  * @format: The format string.
  * @...: A variable number of arguments to print.
  *
- * Return: The number of char to print.
+ * Return: Printed chars.
  */
 int _printf(const char *format, ...)
 {
@@ -23,7 +23,7 @@ int _printf(const char *format, ...)
 		}
 		else
 		{
-			format++;
+			format++; // Move past '%'
 			if (*format == 'c')
 			{
 				char c = va_arg(args, int);
@@ -53,5 +53,5 @@ int _printf(const char *format, ...)
 
 	va_end(args);
 
-	return (printed_chars);
+	return printed_chars;
 }
